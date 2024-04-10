@@ -1,8 +1,8 @@
-package com.babel.applications;
+package com.babel.interfaz.applications;
 
-import com.babel.models.DobleNumero;
-import com.babel.services.ICalculadoraService;
-import com.babel.services.IGestorUsuarioService;
+import com.babel.core.models.DobleNumero;
+import com.babel.core.services.ICalculadoraService;
+import com.babel.interfaz.services.IGestorUsuarioService;
 import org.springframework.stereotype.Component;
 
 @Component

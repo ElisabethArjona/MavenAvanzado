@@ -1,4 +1,4 @@
-package com.babel.configuration;
+package com.babel.interfaz.configuration;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;

@@ -17,6 +17,15 @@
     <module>Core</module>
     <module>Interfaz</module>
   </modules>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>jakarta.validation</groupId>
+        <artifactId>jakarta.validation-api</artifactId>
+        <version>3.1.0-M2</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
   <dependencies>
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -29,14 +38,77 @@
       <version>1.18.32</version>
       <scope>provided</scope>
     </dependency>
-
+    <!-- https://mvnrepository.com/artifact/jakarta.validation/jakarta.validation-api -->
   </dependencies>
   <build>
-    <plugins>
-      <plugin>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-maven-plugin</artifactId>
-      </plugin>
-    </plugins>
+    <pluginManagement>
+        <plugins>
+          <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+          </plugin>
+        </plugins>
+    </pluginManagement>
   </build>
+
+  <profiles>
+    <profile>
+      <id>1</id>
+      <pluginRepositories>
+        <pluginRepository>
+          <id>maven-repository</id>
+          <url>https://mavenrepository.com/</url>
+        </pluginRepository>
+      </pluginRepositories>
+      <activation>
+        <jdk>19</jdk>
+        <property>
+          <name>packaging</name>
+          <value>1</value>
+        </property>
+      </activation>
+      <properties>
+        <db.driverClassName>org.apache.derby.jdbc.EmbeddedDriver</db.driverClassName>
+      </properties>
+      <build>
+        <resources>
+          <resource>
+            <excludes>
+              <exclude>*</exclude>
+            </excludes>
+            <directory>src/main/resources/resources1</directory>
+          </resource>
+        </resources>
+      </build>
+    </profile>
+
+    <profile>
+      <id>2</id>
+      <pluginRepositories>
+        <pluginRepository>
+          <id>spring.snapshots</id>
+          <url>https://repo.spring.io/ui/packages</url>
+        </pluginRepository>
+      </pluginRepositories>
+      <activation>
+        <jdk>17</jdk>
+        <file>
+          <missing>target/2</missing>
+        </file>
+      </activation>
+      <properties>
+        <db.driverClassName>com.mysql.jdbc.Driver</db.driverClassName>
+      </properties>
+      <build>
+        <resources>
+          <resource>
+            <excludes>
+              <exclude>*.txt</exclude>
+            </excludes>
+          </resource>
+        </resources>
+      </build>
+    </profile>
+  </profiles>
 </project>
+

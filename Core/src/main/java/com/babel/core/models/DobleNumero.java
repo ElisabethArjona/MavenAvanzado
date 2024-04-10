@@ -1,7 +1,6 @@
-package com.babel.models;
+package com.babel.core.models;
 
 import lombok.Data;
-
 @Data
 public class DobleNumero {
     private double num1;
